@@ -35,7 +35,7 @@ const Navbar = () => {
 
 
                     <Typography variant="img" component="div" className='grow text-white text-3xl'>
-                        Fast Wash
+                        FastWash
                     </Typography>
 
                     <Link to='/about'>

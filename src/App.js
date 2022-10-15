@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Navbar from './Components/Navbar';
 import MidContainer from './Components/MidContainer';
+import Footer from './Components/Footer';
 function App() {
   return (
     <>
@@ -14,10 +15,12 @@ function App() {
 
         <Navbar />
         <Routes>
-          <Route exact path='/' element={<MidContainer/>}></Route>
+          <Route exact path='/' element={<MidContainer />}></Route>
         </Routes>
 
-      {/* <div className='bg-banner'>hello mr.duniya</div> */}
+        {/* <div className='bg-banner'>hello mr.duniya</div> */}
+
+        <Footer />
       </BrowserRouter>
     </>
   );

@@ -17,6 +17,9 @@ export const theme = createTheme({
         ,
         navbarcolor:{
             main:"#000000"
+        },
+        trycolor:{
+            main:'#0095da'
         }
     }
 })
