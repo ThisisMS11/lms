@@ -38,8 +38,11 @@ const Navbar = () => {
                         FastWash
                     </Typography>
 
-                    <Link to='/about'>
-                        <button color="inherit" className='mr-4 border-2 p-2 rounded-md border-grey-400 text-white '>About Us</button>
+                    <Link to='/login'>
+                        <button color="inherit" className='mr-4 border-2 p-2 rounded-md border-grey-400 text-white '>Login</button>
+                    </Link>
+                    <Link to='/signup'>
+                        <button color="inherit" className='mr-4 border-2 p-2 rounded-md border-grey-400 text-white '>SignUp</button>
                     </Link>
 
 

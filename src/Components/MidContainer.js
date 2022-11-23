@@ -6,6 +6,7 @@ import { Card, Typography } from '@mui/material';
 import washingmachine from '../assets/images/washingmachine.png'
 import Button from '@mui/material/Button';
 import ServiceCard from './ServiceCard';
+import ClientReview from './ClientReview';
 
 
 const MidContainer = () => {
@@ -24,7 +25,7 @@ const MidContainer = () => {
                     <Typography variant='h4' className='p-2 border-2 w-fit border-red-400' component='div'>
                         Cleaning Clothes made easy with FashWash
                     </Typography>
-                    <Typography variant='h5' className='p-2 border-2 border-red-400 w-3/4 m-4'>
+                    <Typography variant='h5' className='p-2 border-2 border-red-400 w-3/4 '>
                         A Feature-Rich Laundry Software for Dry Cleaners And Laundries To Manage All Day-to-Day Operations
                     </Typography>
                     <Button variant="contained" color='trycolor' sx={{ color: 'white', marginTop: '4px', borderRadius: 6, paddingX: 4 }}>Try us</Button>
@@ -37,18 +38,26 @@ const MidContainer = () => {
 
             </Container>
 
-            <div className='border-t-2 w-full border-black'></div>
+            {/* <div className='border-t-2 w-full border-black'></div> */}
 
-            <Container maxWidth="lg" className='border-2 border-red-800'>
-                <Typography variant='h3' className='p-2 border-2  w-fit border-red-400' sx={{ fontWeight: '350' ,margin:'0px auto'}} component='div'>
+            <Container maxWidth="xl" className='border-2 border-red-800'>
+                <Typography variant='h3' className='p-2 border-2  w-fit border-red-400' sx={{ fontWeight: '350', margin: '0px auto' }} component='div'>
                     Our Services
                 </Typography>
 
-                <div className='flex items-center justify-around mt-10'>
-                <ServiceCard/>
-                <ServiceCard/>
-                <ServiceCard/>
+                <div className='flex items-center justify-around mt-10 border-2 border-red-400'>
+                    <ServiceCard />
+                    <ServiceCard />
+                    <ServiceCard />
+                    <ServiceCard />
                 </div>
+            </Container>
+
+            <Container maxWidth="xl" className='border-2 border-red-800 my-4'>
+            <Typography variant='h3' className='p-2 border-2  w-fit border-red-400 mb-4' sx={{ fontWeight: '350', margin: '0px auto' }} component='div'>
+                    Our Clients
+                </Typography>
+                <ClientReview />
             </Container>
         </>
     )
