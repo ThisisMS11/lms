@@ -1,0 +1,18 @@
+env\Scripts\activate.bat
+py manage.py runserver
+
+import { useState,useState,useContext } from 'react';
+  const context = useContext(UserContext);
+    let { progress, setprogress } = context;
+
+    useEffect(() => {
+        setTimeout(() => {
+            setprogress(50);
+        }, 200);
+        setTimeout(() => {
+            setprogress(75);
+        }, 200);
+        setTimeout(() => {
+            setprogress(100);
+        }, 200);
+    }, []);

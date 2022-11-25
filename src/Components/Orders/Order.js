@@ -1,5 +1,5 @@
 import { Container } from '@mui/system'
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import React from 'react'
@@ -17,6 +17,8 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { Link } from 'react-router-dom';
+import UserContext from '../context/Users/UserContext';
 
 
 const Order = () => {
@@ -27,10 +29,11 @@ const Order = () => {
 
 
 
-    const [clothlist, setClothlist] = useState([{ Clothtype: '', WashingType: '', Quantity: 0 },]);
+    const [clothlist, setClothlist] = useState([{ userid: localStorage.getItem('userid'), Clothtype: '', WashingType: '', Quantity: 0 }]);
+
 
     const HandleClothAdd = () => {
-        setClothlist([...clothlist, { Clothtype: '', WashingType: '', Quantity: 0 }])
+        setClothlist([...clothlist, { userid: localStorage.getItem('userid'), Clothtype: '', WashingType: '', Quantity: 0 }]);
     }
 
     const HandleClothDelete = (index) => {
@@ -67,10 +70,27 @@ const Order = () => {
         setClothlist(list);
     }
 
+    const context = useContext(UserContext);
+    let { progress, setprogress } = context;
+
+    useEffect(() => {
+        /* loading bar starts*/
+
+        setprogress(50)
+        setTimeout(() => {
+            setprogress(65)
+        }, 500);
+        setTimeout(() => {
+            setprogress(100)
+        }, 700);
+
+        /* loading bar ends*/
+        console.log("the id of the user is " + localStorage.getItem('userid'));
+    }, [])
 
     return (
         <>
-            <Container maxWidth='lg' className=' border-green-600  flex justify-center flex-col items-center'>
+            <Container maxWidth='lg' className=' border-green-600  flex justify-center flex-col items-center text-center'>
                 <Typography variant='h3' className='p-2   w-fit border-red-400 font-light mx-auto' component='div'>
                     Order Clothes for Washing
                 </Typography>
@@ -175,6 +195,11 @@ const Order = () => {
                     </Button> */}
 
                 </div>
+
+                <Link to='/ordersum'>
+                    <Button variant="contained" color="secondary" sx={{ marginY: 2, paddingY: 1, paddingX: 3 }} >Order Here</Button>
+                </Link>
+
 
 
 

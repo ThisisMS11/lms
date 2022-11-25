@@ -6,22 +6,23 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function ServiceCard() {
+export default function ServiceCard(props) {
+    let {img,sertitle,serContent} =  props;
+
     return (
         <Card sx={{ maxWidth: 300 }}>
             <CardMedia
                 component="img"
                 alt="green iguana"
                 height="140"
-                image="https://source.unsplash.com/500x300/?cloth"
+                image={img}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" className='text-center'>
-                    Lizard
+                    {sertitle}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    {serContent}
                 </Typography>
             </CardContent>
                 {/* <CardActions>
