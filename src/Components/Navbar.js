@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import LoadingBar from 'react-top-loading-bar'
 import logo from '../assets/images/logo2.png'
 import UserContext from './context/Users/UserContext';
+import { Password } from '@mui/icons-material';
 
 const Navbar = () => {
 
@@ -51,6 +52,9 @@ const Navbar = () => {
         handleClose();
         navigate('/profile');
     }
+    const handlemyorders = () => {
+        handleClose();
+    }
 
 
 
@@ -73,6 +77,9 @@ const Navbar = () => {
                         FastWash
                     </Typography>
 
+                    <Link to='/about'>
+                        <button color="inherit" className='mr-4 border-2 p-2 rounded-md border-grey-400 text-white '>About Us</button>
+                    </Link>
 
                     {/* localStorage stuff is here */}
                     {!localStorage.getItem('token') ? <div className="d-flex">
@@ -104,7 +111,9 @@ const Navbar = () => {
                             <Link to='/profile'>
                                 <MenuItem onClick={handleprofile}>Profile</MenuItem>
                             </Link>
-                            <MenuItem onClick={handleClose}>My Orders</MenuItem>
+                            <Link to='/myorder'>
+                                <MenuItem onClick={handlemyorders}>My Orders</MenuItem>
+                            </Link>
                             <MenuItem onClick={handleClose}>Wallet</MenuItem>
                             <MenuItem onClick={handleClose}>Logout</MenuItem>
                         </Menu>

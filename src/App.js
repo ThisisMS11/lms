@@ -15,6 +15,7 @@ import Order from './Components/Orders/Order';
 import UserState from './Components/context/Users/UserState';
 import OrderSummary from './Components/Tables/OrderSummary';
 import Profile from './Components/MyUser/Profile';
+import MyOrders from './Components/Orders/MyOrders';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
             <Route exact path='/order' element={<Order />}></Route>
             <Route exact path='/ordersum' element={<OrderSummary />}></Route>
             <Route exact path='/profile' element={<Profile />}></Route>
+            <Route exact path='/about' element={<Profile />}></Route>
+            <Route exact path='/myorder' element={<MyOrders />}></Route>
           </Routes>
 
           <Footer />

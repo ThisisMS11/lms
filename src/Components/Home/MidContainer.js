@@ -17,6 +17,7 @@ import img4 from '../../assets/images/ser4.png'
 
 
 import { useNavigate } from 'react-router-dom';
+import ServicesM from './ServicesM';
 
 
 
@@ -87,6 +88,14 @@ const MidContainer = () => {
                     <ServiceCard img={img3} sertitle="Online Payment Accepted" serContent="" />
                     <ServiceCard img={img4} sertitle="Free Home Delivery" serContent="" />
                 </div>
+            </Container>
+            
+
+            <Container maxWidth="xl" className=' border-red-800 my-4'>
+                <Typography variant='h3' className='p-2   w-fit border-red-400 mb-4' sx={{ fontWeight: '350', margin: '0px auto' }} component='div'>
+                    Our Products
+                </Typography>
+                <ServicesM />
             </Container>
 
             <Container maxWidth="xl" className=' border-red-800 my-4'>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext,useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -44,7 +44,8 @@ export default function OrderSummary() {
 
 
     const context = useContext(UserContext);
-    let { setprogress } = context;
+    let { setprogress, neworderlist } = context;
+
     useEffect(() => {
         /* loading bar starts*/
 
@@ -57,6 +58,8 @@ export default function OrderSummary() {
         }, 700);
 
         /* loading bar ends*/
+
+        console.log('neworder list is here ' + neworderlist);
     }, [])
 
 
@@ -79,7 +82,8 @@ export default function OrderSummary() {
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} > Price</TableCell>
                         </TableRow>
                         <TableRow>
-                            <TableCell sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} >Desc</TableCell>
+                            <TableCell sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} >Clothtype</TableCell>
+                            <TableCell sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} >WashingType</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} >Qty.</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} >Unit</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 20, fontFamily: 'sans-serif' }} >Sum</TableCell>

@@ -17,7 +17,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserContext from '../context/Users/UserContext';
 
 
@@ -71,7 +71,7 @@ const Order = () => {
     }
 
     const context = useContext(UserContext);
-    let { progress, setprogress } = context;
+    let { setprogress, setNeworderlist } = context;
 
     useEffect(() => {
         /* loading bar starts*/
@@ -87,6 +87,15 @@ const Order = () => {
         /* loading bar ends*/
         console.log("the id of the user is " + localStorage.getItem('userid'));
     }, [])
+
+    const navigate = useNavigate();
+    // moving to order summary on click of order button here
+    const handleGiveOrder = () => {
+        setNeworderlist(clothlist);
+
+        navigate('/ordersum');
+    }
+    
 
     return (
         <>
@@ -196,9 +205,9 @@ const Order = () => {
 
                 </div>
 
-                <Link to='/ordersum'>
-                    <Button variant="contained" color="secondary" sx={{ marginY: 2, paddingY: 1, paddingX: 3 }} >Order Here</Button>
-                </Link>
+
+                <Button variant="contained" color="secondary" sx={{ marginY: 2, paddingY: 1, paddingX: 3 }} onClick={handleGiveOrder}>Order Here</Button>
+
 
 
 

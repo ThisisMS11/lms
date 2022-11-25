@@ -8,10 +8,20 @@ const UserState = (props) => {
 
     const [Acuserinfo, setAcuserinfo] = useState({ name: "", email: "", mobile: "", adress: "" });
 
+    const [userorders, setUserorders] = useState([]);
+
+    const [neworderlist, setNeworderlist] = useState([]);
+
+
+    
+
+    let mohit=[];
+
+
 
 
     return (
-        <userContext.Provider value={{ progress, setprogress, Acuserinfo, setAcuserinfo }}>
+        <userContext.Provider value={{ progress, setprogress, Acuserinfo, setAcuserinfo, userorders, setUserorders, neworderlist, setNeworderlist ,mohit}}>
             {props.children}
         </userContext.Provider>
     )

@@ -1,0 +1,84 @@
+
+.main-btn {
+   display: inline-block;
+   padding: 0.625rem 1.875rem;
+   line-height: 1.5625rem;
+   background-color: lightslategray;
+   /* border: 0.1875rem solid black; */
+   color: white;
+   font-size: 0.9875rem;
+   font-weight: 600;
+   text-transform: capitalize;
+   box-shadow: 0px 2px 10px -1px rgb(0 0 0 / 19%);
+   -webkit-transition: all 0.4s ease-out 0s;
+   -o-transition: all 0.4s ease-out 0s;
+   -moz-transition: all 0.4s ease-out 0s;
+   transition: all 0.4s ease-out 0s;
+   border-radius: 0.8rem;
+}
+
+
+
+.main-btn:hover {
+   background-color: transparent;
+   border: 0.1875rem solid rgb(49, 48, 48); 
+   color: grey;
+}
+
+/* css for food card section... */
+
+.explore-food .card {
+   border: none;
+   border-right-color: transparent;
+   border-radius: 0.9375rem;
+   text-align: center;
+}
+
+.explore-food .card:hover {
+   box-shadow: 0px 0px 10px 2px gray;
+}
+
+.explore-food .card img {
+   border-radius: 0.9375rem;
+   object-fit: cover;
+}
+
+.explore-food .card .main-btn {
+
+   width: 100%;
+   opacity: 0.6;
+   transition: 0.5s;
+}
+
+.explore-food .card:hover .main-btn {
+   margin-bottom: 0;
+   opacity: 1;
+}
+
+.explore-food .card span {
+   display: block;
+   font-size: 1.5rem;
+   font-weight: 700;
+   color: var(--primary-color);
+   padding-bottom: 1rem;
+   border-bottom: 0.0625rem solid #eee;
+}
+
+.explore-food .card span del {
+   color: var(--text-grey);
+   margin: 0.5rem;
+}
+
+
+
+/* about us page css.... */
+
+.about_section img{
+   border-radius: 10px;
+   border: 3px solid rgb(138, 138, 138);
+}
+
+.about_content .about_details {
+   color: black;
+   font-weight: 500;
+}
