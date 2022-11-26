@@ -14,6 +14,32 @@ import Button from '@mui/material/Button';
 
 const MyOrders = () => {
 
+
+    const context = useContext(UserContext);
+    let { progress, setprogress, userorders, setUserorders } = context;
+
+
+    async function fetchUserOrders() {
+        const response = await fetch(`http://127.0.0.1:8000/api/user/order/?userid=${localStorage.getItem('userid')}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+
+        const json = await response.json();
+
+        setUserorders(json);
+    }
+
+
+    useEffect(() => {
+        fetchUserOrders();
+
+        console.log('userorders =', userorders);
+    }, [])
+
+
     return (
         <div>
 
@@ -34,41 +60,26 @@ const MyOrders = () => {
                         </TableHead>
                         <TableBody>
 
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row" sx={{ fontSize: 20, textAlign: 'center' }}>
-                                    Name
-                                </TableCell>
-                                <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>hello</TableCell>
-                            </TableRow>
+                            {
+                                userorders.map((e, index) => {
+                                    return <TableRow
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }} key={index}
+                                    >
+                                        <TableCell component="th" scope="row" sx={{ fontSize: 20, textAlign: 'center' }}>
+                                            {e.id}
+                                        </TableCell>
+                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.Clothtype}</TableCell>
 
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row" sx={{ fontSize: 20, textAlign: 'center' }}>
-                                    Email
-                                </TableCell>
-                                <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>hello</TableCell>
-                            </TableRow>
+                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.WashingType}</TableCell>
 
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row" sx={{ fontSize: 20, textAlign: 'center' }}>
-                                    Mobile Number
-                                </TableCell>
-                                <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>hello</TableCell>
-                            </TableRow>
+                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.Quantity}</TableCell>
 
-                            <TableRow
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row" sx={{ fontSize: 20, textAlign: 'center' }}>
-                                    Address
-                                </TableCell>
-                                <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>hello</TableCell>
-                            </TableRow>
+                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.orderdate}</TableCell>
+
+                                    </TableRow>
+                                })
+                            }
+
 
 
                         </TableBody>

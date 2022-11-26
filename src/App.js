@@ -16,6 +16,8 @@ import UserState from './Components/context/Users/UserState';
 import OrderSummary from './Components/Tables/OrderSummary';
 import Profile from './Components/MyUser/Profile';
 import MyOrders from './Components/Orders/MyOrders';
+import Paynow from './Components/Payment/Paynow';
+import ChangePassword from './Components/Authentication/ChangePassword';
 
 function App() {
   return (
@@ -31,10 +33,11 @@ function App() {
             <Route exact path='/Login' element={<Login />}></Route>
             <Route exact path='/reset' element={<ResetPassword />}></Route>
             <Route exact path='/order' element={<Order />}></Route>
-            <Route exact path='/ordersum' element={<OrderSummary />}></Route>
             <Route exact path='/profile' element={<Profile />}></Route>
             <Route exact path='/about' element={<Profile />}></Route>
             <Route exact path='/myorder' element={<MyOrders />}></Route>
+            <Route exact path='/paynow' element={<Paynow />}></Route>
+            <Route exact path='/api/user/reset/:id/:token' element={<ChangePassword />}></Route>
           </Routes>
 
           <Footer />

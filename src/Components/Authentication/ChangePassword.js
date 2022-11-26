@@ -6,10 +6,7 @@ import TextField from '@mui/joy/TextField';
 // import TextField from '@mui/material/TextField';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import Alert from '@mui/joy/Alert';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import IconButton from '@mui/joy/IconButton';
+import { useParams } from 'react-router-dom';
 
 const ModeToggle = () => {
     const { mode, setMode } = useColorScheme();
@@ -42,33 +39,33 @@ const ModeToggle = () => {
     );
 };
 
-export default function ResetPassword() {
+export default function ChangePassword() {
 
-    const [userinfo, setUserinfo] = useState({ email: "" });
+    const [userinfo, setUserinfo] = useState({ NewPassword: "", ConfirmPassword: "" });
 
     const handleOnChange = (e) => {
         setUserinfo({ ...userinfo, [e.target.name]: e.target.value })
     }
 
-    const [showmsg, setShowmsg] = useState('none');
+    const givestatus = () => {
+        console.log(userinfo)
+    }
+
+    const { id, token } = useParams();
 
 
-    const handlesendlink = async () => {
-        const response = await fetch("http://127.0.0.1:8000/api/user/send-reset-password-email/", {
+
+    const handlesavelink = async (e) => {
+        const response = await fetch(`http://127.0.0.1:8000/api/user/reset-password/${id}/${token}/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ email: userinfo.email })
+            body: JSON.stringify({ password: userinfo.NewPassword, password2: userinfo.ConfirmPassword })
         });
 
         const json = await response.json();
-
-        if (json.msg == "Password reset link send Successfully check email") {
-            setShowmsg('block');
-        }
-        
-
+        console.log('save response => ', json);
     }
 
     return (
@@ -97,11 +94,20 @@ export default function ResetPassword() {
                     </div>
 
                     <TextField
-                        name="email"
-                        type="email"
-                        placeholder="Ex :- xxx@gmail.com"
-                        label="Enter Your Email"
-                        value={userinfo.email}
+                        name="NewPassword"
+                        type="password"
+                        placeholder="xxxxxx"
+                        label="New Password"
+                        value={userinfo.NewPassword}
+                        onChange={handleOnChange}
+                    />
+
+                    <TextField
+                        name="ConfirmPassword"
+                        type="password"
+                        placeholder="xxxxxx"
+                        label="Confirm Password"
+                        value={userinfo.ConfirmPassword}
                         onChange={handleOnChange}
                     />
 
@@ -109,38 +115,11 @@ export default function ResetPassword() {
                         sx={{
                             mt: 1, // margin top
                         }}
-                        onClick={handlesendlink}>
-                        Send Link
+                        onClick={handlesavelink}>
+                        Save
                     </Button>
 
                 </Sheet>
-
-                <div className={` border-red-400 d-${showmsg} text-center`}>
-                    <Alert
-                        key="success"
-                        sx={{ alignItems: 'flex-start' }}
-                        startDecorator={React.cloneElement(<CheckCircleIcon />, {
-                            sx: { mt: '2px', mx: '4px' },
-                            fontSize: 'xl2',
-                        })}
-                        variant="soft"
-                        color='success'
-                        endDecorator={
-                            <IconButton variant="soft" size="sm" color='success'>
-                                <CloseRoundedIcon />
-                            </IconButton>
-                        }
-                    >
-                        <div className=''>
-                            <Typography fontWeight="lg" mt={0.25}>
-                                Link Send Successfully
-                            </Typography>
-                            <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
-                                Check your email
-                            </Typography>
-                        </div>
-                    </Alert>
-                </div>
             </main>
         </CssVarsProvider>
     );

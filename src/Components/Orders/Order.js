@@ -19,6 +19,8 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { Link, useNavigate } from 'react-router-dom';
 import UserContext from '../context/Users/UserContext';
+import OrderSummary from '../Tables/OrderSummary';
+import { DiscFullOutlined } from '@mui/icons-material';
 
 
 const Order = () => {
@@ -71,7 +73,7 @@ const Order = () => {
     }
 
     const context = useContext(UserContext);
-    let { setprogress, setNeworderlist } = context;
+    let { setprogress } = context;
 
     useEffect(() => {
         /* loading bar starts*/
@@ -89,13 +91,16 @@ const Order = () => {
     }, [])
 
     const navigate = useNavigate();
-    // moving to order summary on click of order button here
+    const [displayordersum, setDisplayordersum] = useState('none');
     const handleGiveOrder = () => {
-        setNeworderlist(clothlist);
-
-        navigate('/ordersum');
+        if (displayordersum == 'block') {
+            setDisplayordersum('none');
+        }
+        else {
+            setDisplayordersum('block');
+        }
     }
-    
+
 
     return (
         <>
@@ -194,25 +199,21 @@ const Order = () => {
 
 
 
-                    {/* <Button
-                        sx={{
-                            my: 1,
-                            border: 'solid 1px grey',
-                        }}
-                        color="secondary" variant="contained">
-                        Log in
-                    </Button> */}
-
                 </div>
 
 
-                <Button variant="contained" color="secondary" sx={{ marginY: 2, paddingY: 1, paddingX: 3 }} onClick={handleGiveOrder}>Order Here</Button>
+                <Button variant="contained" color="secondary" sx={{ marginY: 2, paddingY: 1, paddingX: 3 }} onClick={handleGiveOrder}>Show Summary</Button>
 
 
 
 
 
             </Container>
+
+
+            <div className={`d-${displayordersum}`}>
+                <OrderSummary neworderlist={clothlist} />
+            </div>
         </>
     )
 }

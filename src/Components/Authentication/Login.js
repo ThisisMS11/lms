@@ -9,6 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import Link from '@mui/joy/Link';
 import UserContext from '../context/Users/UserContext';
 
+import Alert from '@mui/joy/Alert';
+import IconButton from '@mui/joy/IconButton';
+import WarningIcon from '@mui/icons-material/Warning';
+import CloseIcon from '@mui/icons-material/Close';
+
 const ModeToggle = () => {
     const { mode, setMode } = useColorScheme();
     const [mounted, setMounted] = React.useState(false);
@@ -65,6 +70,8 @@ export default function Login() {
 
     const [userinfo, setUserinfo] = useState({ email: "", password: "" });
 
+    const [alertdis, setAlertdis] = useState('none');
+
     const handleOnChange = (e) => {
         setUserinfo({ ...userinfo, [e.target.name]: e.target.value })
     }
@@ -85,6 +92,8 @@ export default function Login() {
         const json = await response.json();
 
         if (json.msg == "Login Success") {
+
+
             console.log('login good mohit')
             localStorage.setItem('token', json.token.access);
 
@@ -111,13 +120,42 @@ export default function Login() {
 
             navigate('/')
         }
+        else {
+            setAlertdis('block');
+        }
 
         setprogress(100)
     }
+    const handlealertdis=()=>{
+        setAlertdis('none');
+    }
+
 
 
     return (
         <CssVarsProvider>
+            <div className={`d-${alertdis}`}>
+                <Alert
+                    startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+                    variant="solid"
+                    color="danger"
+                    endDecorator={
+                        <React.Fragment>
+                            <IconButton variant="solid" size="sm" color="danger">
+                                <div onClick={handlealertdis}>
+                                    <CloseIcon />
+                                </div>
+
+                            </IconButton>
+                        </React.Fragment>
+                    }
+                >
+                    <Typography sx={{ color: 'white' }} fontWeight="md">
+                        Login Unsuccessful Try Again
+                    </Typography>
+                </Alert>
+            </div>
+
             <main className=' border-red-600 py-16'>
                 {/* <ModeToggle /> */}
                 <Sheet
@@ -175,6 +213,14 @@ export default function Login() {
                         sx={{ alignSelf: 'center' }}
                     >
                         Don&apos;t have an account?
+                    </Typography>
+
+                    <Typography
+                        endDecorator={<Link href="/reset">Click Here </Link>}
+                        fontSize="sm"
+                        sx={{ alignSelf: 'center' }}
+                    >
+                        Forget Password?
                     </Typography>
                 </Sheet>
             </main>

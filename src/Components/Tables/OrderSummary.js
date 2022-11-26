@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { Container } from '@mui/system';
 import UserContext from '../context/Users/UserContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const TAX_RATE = 0.07;
 
@@ -40,11 +41,15 @@ const invoiceSubtotal = subtotal(rows);
 const invoiceTaxes = TAX_RATE * invoiceSubtotal;
 const invoiceTotal = invoiceTaxes + invoiceSubtotal;
 
-export default function OrderSummary() {
+export default function OrderSummary(props) {
 
 
     const context = useContext(UserContext);
-    let { setprogress, neworderlist } = context;
+    let { setprogress, newlist, setNewlist } = context;
+
+    let { neworderlist } = props;
+
+    console.log('neworder list is here ', neworderlist);
 
     useEffect(() => {
         /* loading bar starts*/
@@ -59,9 +64,16 @@ export default function OrderSummary() {
 
         /* loading bar ends*/
 
-        console.log('neworder list is here ' + neworderlist);
+
     }, [])
 
+
+    const navigate = useNavigate();
+    
+    const handlepaynow = () => {
+        setNewlist(neworderlist);
+        navigate('/Paynow')
+    }
 
 
 
@@ -90,28 +102,30 @@ export default function OrderSummary() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.desc}>
-                                <TableCell sx={{ color: 'Black', fontSize: 18, fontFamily: 'sans-serif' }} >{row.desc}</TableCell>
-                                <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }} >{row.qty}</TableCell>
-                                <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{row.unit}</TableCell>
-                                <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{ccyFormat(row.price)}</TableCell>
+                        {neworderlist.map((e, index) => (
+                            <TableRow key={index}>
+                                <TableCell sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }} >{e.Clothtype}</TableCell>
+                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif', textAlign: 'left' }} >{e.WashingType}</TableCell>
+                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity}</TableCell>
+                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity}</TableCell>
+                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity}</TableCell>
                             </TableRow>
                         ))}
 
                         <TableRow>
                             <TableCell rowSpan={3} />
-                            <TableCell colSpan={2} sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }} >Subtotal</TableCell>
+                            <TableCell colSpan={3} sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }} >Subtotal</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{ccyFormat(invoiceSubtotal)}</TableCell>
                         </TableRow>
 
                         <TableRow>
-                            <TableCell sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>Tax</TableCell>
+                            <TableCell colSpan={2} sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>Tax</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{ccyFormat(invoiceTaxes)}</TableCell>
                         </TableRow>
+
                         <TableRow>
-                            <TableCell colSpan={2} sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>Total</TableCell>
+                            <TableCell colSpan={3} sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>Total</TableCell>
                             <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{ccyFormat(invoiceTotal)}</TableCell>
                         </TableRow>
                     </TableBody>
@@ -119,7 +133,13 @@ export default function OrderSummary() {
             </TableContainer>
 
             <div className="container mt-4 border-green-600 text-center">
-                <Button variant="contained" color="secondary" sx={{ paddingY: 1, paddingX: 3 }}>Pay Now</Button>
+                {/* <Link to='/paynow'>
+                    <Button variant="contained" color="secondary" sx={{ paddingY: 1, paddingX: 3 }}>Pay Now</Button>
+
+                </Link> */}
+
+                <Button variant="contained" color="secondary" sx={{ paddingY: 1, paddingX: 3 }} onClick={handlepaynow}>Pay Now</Button>
+
                 <Button variant="contained" color="secondary" sx={{ paddingY: 1, paddingX: 3, marginX: 6 }}>Cancel Order</Button>
             </div>
 
