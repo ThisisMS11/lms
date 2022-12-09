@@ -12,7 +12,7 @@ import { Container } from '@mui/system';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
-const MyOrders = () => {
+const PaymentConfirm = () => {
 
 
     const context = useContext(UserContext);
@@ -34,27 +34,7 @@ const MyOrders = () => {
 
 
     useEffect(() => {
-
-        setprogress(50)
-        setTimeout(() => {
-            setprogress(65)
-        }, 500);
-        setTimeout(() => {
-            setprogress(100)
-        }, 700);
         fetchUserOrders();
-
-
-
-        setprogress(50)
-        setTimeout(() => {
-            setprogress(65)
-        }, 500);
-        setTimeout(() => {
-            setprogress(100)
-        }, 700);
-
-        /* loading bar ends*/
 
         console.log('userorders =', userorders);
     }, [])
@@ -72,10 +52,9 @@ const MyOrders = () => {
                         <TableHead>
                             <TableRow>
                                 <TableCell sx={{ fontSize: 25, textAlign: 'center' }}>OrderId</TableCell>
-                                <TableCell sx={{ fontSize: 25, textAlign: 'center' }}>Clothtype</TableCell>
-                                <TableCell align="right" sx={{ fontSize: 25, textAlign: 'center' }}>WashingType</TableCell>
-                                <TableCell align="right" sx={{ fontSize: 25, textAlign: 'center' }}>Quantity</TableCell>
                                 <TableCell align="right" sx={{ fontSize: 25, textAlign: 'center' }}>Order Date</TableCell>
+                                <TableCell align="right" sx={{ fontSize: 25, textAlign: 'center' }}>Payment Status</TableCell>
+                                <TableCell align="right" sx={{ fontSize: 25, textAlign: 'center' }}>Admin Confirmation</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -88,13 +67,16 @@ const MyOrders = () => {
                                         <TableCell component="th" scope="row" sx={{ fontSize: 20, textAlign: 'center' }}>
                                             {e.id}
                                         </TableCell>
-                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.Clothtype}</TableCell>
-
-                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.WashingType}</TableCell>
-
-                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.Quantity}</TableCell>
 
                                         <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{e.orderdate}</TableCell>
+
+                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>Done</TableCell>
+
+                                        <TableCell align="right" sx={{ fontSize: 20, textAlign: 'center' }}>{
+                                            (Math.floor(Math.random() * 10) % 2) == 0 ? "True" : "False"
+                                        }</TableCell>
+
+
 
                                     </TableRow>
                                 })
@@ -119,4 +101,4 @@ const MyOrders = () => {
     )
 }
 
-export default MyOrders
+export default PaymentConfirm

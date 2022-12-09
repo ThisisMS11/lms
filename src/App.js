@@ -18,6 +18,7 @@ import Profile from './Components/MyUser/Profile';
 import MyOrders from './Components/Orders/MyOrders';
 import Paynow from './Components/Payment/Paynow';
 import ChangePassword from './Components/Authentication/ChangePassword';
+import PaymentConfirm from './Components/Payment/PaymentConfim';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             <Route exact path='/myorder' element={<MyOrders />}></Route>
             <Route exact path='/paynow' element={<Paynow />}></Route>
             <Route exact path='/api/user/reset/:id/:token' element={<ChangePassword />}></Route>
+            <Route exact path='/payconfirm' element={<PaymentConfirm />}></Route>
           </Routes>
 
           <Footer />

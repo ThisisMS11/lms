@@ -76,10 +76,10 @@ const Navbar = () => {
                     <Typography variant="img" component="div" className='grow text-white text-3xl'>
                         FastWash
                     </Typography>
-
+{/* 
                     <Link to='/about'>
                         <button color="inherit" className='mr-4 border-2 p-2 rounded-md border-grey-400 text-white '>About Us</button>
-                    </Link>
+                    </Link> */}
 
                     {/* localStorage stuff is here */}
                     {!localStorage.getItem('token') ? <div className="d-flex">
@@ -114,8 +114,7 @@ const Navbar = () => {
                             <Link to='/myorder'>
                                 <MenuItem onClick={handlemyorders}>My Orders</MenuItem>
                             </Link>
-                            <MenuItem onClick={handleClose}>Wallet</MenuItem>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <MenuItem onClick={handlelogout}>Logout</MenuItem>
                         </Menu>
 
 

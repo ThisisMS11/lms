@@ -69,7 +69,7 @@ export default function OrderSummary(props) {
 
 
     const navigate = useNavigate();
-    
+
     const handlepaynow = () => {
         setNewlist(neworderlist);
         navigate('/Paynow')
@@ -107,15 +107,15 @@ export default function OrderSummary(props) {
                                 <TableCell sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }} >{e.Clothtype}</TableCell>
                                 <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif', textAlign: 'left' }} >{e.WashingType}</TableCell>
                                 <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity}</TableCell>
-                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity}</TableCell>
-                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity}</TableCell>
+                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{25}</TableCell>
+                                <TableCell align="right" sx={{ color: 'Black', fontSize: 16, fontFamily: 'sans-serif' }}>{e.Quantity * 25}</TableCell>
                             </TableRow>
                         ))}
 
                         <TableRow>
                             <TableCell rowSpan={3} />
                             <TableCell colSpan={3} sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }} >Subtotal</TableCell>
-                            <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>{ccyFormat(invoiceSubtotal)}</TableCell>
+                            <TableCell align="right" sx={{ color: 'Black', fontSize: 15, fontFamily: 'sans-serif' }}>245</TableCell>
                         </TableRow>
 
                         <TableRow>
